@@ -12,11 +12,12 @@ def convert_md_to_paprika3(file_path):
     formatted_contents = re.sub(
         r"### (.*)", r"<h3>\1</h3>", formatted_contents)
     formatted_contents = re.sub(
+        r"__(.*)__", r"<strong>\1</strong>", formatted_contents)
+    formatted_contents = re.sub(
         r"\*\*(.*)\*\*", r"<strong>\1</strong>", formatted_contents)
     formatted_contents = re.sub(r"_(.*)_", r"<em>\1</em>", formatted_contents)
-    # write the formatted text to a new file
-    with open(file_path[:-3] + ".paprika3", "w") as f:
-        f.write(formatted_contents)
+    formatted_contents = re.sub(
+        r"\*(.*)\*", r"<em>\1</em>", formatted_contents)
 
 
 # prompt the user for the folder path
